@@ -1,4 +1,5 @@
 const hre = require("hardhat");
+const deploy = require("./deploy").deploy
 const ethers = hre.ethers;
 
 require('dotenv').config()
@@ -18,15 +19,6 @@ async function main() {
     console.log(await coinFlip.consecutiveWins());
   }
 
-}
-
-async function deploy() {
-  const Guesser = await ethers.getContractFactory("FlipGuesser");
-  const guesser = await Guesser.deploy(process.env.COIN_FLIP_ADDR)
-
-  await guesser.deployed()
-
-  return guesser
 }
 
 // We recommend this pattern to be able to use async/await everywhere
